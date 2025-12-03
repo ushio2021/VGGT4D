@@ -116,13 +116,6 @@ def load_tum_poses(data_dir):
     return pred_pose
 
 
-def save_dynamic_masks(data_dir, masks):
-    for i, dynamic_mask in enumerate(masks):
-        img_path = data_dir / f"dynamic_mask_{i:04d}.png"
-        cv2.imwrite(img_path, (dynamic_mask *
-                    255).detach().cpu().numpy().astype(np.uint8))
-
-
 def enlarge_seg_masks(data_dir, kernel_size=5):
     dyn_mask_paths = list(data_dir.glob("dynamic_mask_*.png"))
     dyn_mask_paths = sorted(dyn_mask_paths)
